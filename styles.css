@@ -43,6 +43,7 @@ span.icon {
     vertical-align: sub;
     user-select: none;
     -webkit-user-select: none;
+    cursor: pointer;
 }
 
 ul {
@@ -114,8 +115,13 @@ body>#toolbar {
     background-color: var(--color-toolbar);
 }
 
-@media (display-mode: standalone) {
+@media (display-mode: standalone),
+(display-mode: minimal-ui) {
     body>#toolbar {
         padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
+
+    #itemInstall {
+        display: none;
     }
 }

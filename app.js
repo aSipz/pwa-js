@@ -3,6 +3,10 @@ let notes = [];
 // Registering all the event handlers when the page loads
 document.addEventListener('DOMContentLoaded', () => {
 
+    if (!('share' in navigator)) {
+        document.querySelector('#btnShare').style.display = 'none';
+    }
+
     if (localStorage.getItem('notes')) {
         notes = JSON.parse(localStorage.getItem('notes'));
     }
@@ -21,8 +25,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    document.querySelector('#btnLearn').addEventListener('click', event => {
-        location.href = 'https://frontendmasters.com';
+    document.querySelector('#btnShare').addEventListener('click', event => {
+        let notesString = '';
+        notes.forEach(n => notesString += n + ' | ');
+        navigator.share({
+            title: 'Codepad',
+            text: notesString,
+        });
+    });
+
+    let bipEvent = null;
+    window.addEventListener('beforeinstallprompt', event => {
+        event.preventDefault();
+        bipEvent = event;
+    });
+
+    document.querySelector('#btnInstall').addEventListener('click', event => {
+        if (bipEvent) {
+            bipEvent.prompt();
+        } else {
+            //incompatible browser, PWA is not passing criteria, already installed
+            alert('To install the app look for Add to Homescreen ot Install in your browser\'s menu');
+        }
     });
 });
 

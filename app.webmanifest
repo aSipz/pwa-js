@@ -1,5 +1,5 @@
 {
-    "name": "Codepad Masters, best PWA",
+    "name": "Codepad Masters",
     "short_name": "Codepad",
     "start_url": "/",
     "theme_color": "#ffc252",
@@ -21,6 +21,14 @@
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "maskable"
+        }
+    ],
+    "description": "This app lets you add notes",
+    "screenshots": [
+        {
+            "src": "/icons/screenshot.png",
+            "sizes": "1170x2532",
+            "type": "image/png"
         }
     ]
 }
